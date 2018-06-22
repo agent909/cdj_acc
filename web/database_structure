@@ -1,12 +1,25 @@
 cash receipt journal
-    >receipt id - integer (primary key)
+    >receipt_id - integer (primary key)
+    >client_id - integer ( connect to client table )
     >date - date
     >particulars (received from) - string
     >schedule - string
-    >doc# (OR#) - integer
+    >doc_id (OR#) - integer
     >cash - numeric
     >account payable - numeric
     >value added tax (VAT) revenue - numeric
     >gross revenue - numeric
     >accounts (e.g. "EWT" etc) - python dictionary
-    
+
+client
+    >client_id - integer (primary key)
+    >name (firstname, middlename, lastname)
+    >contact# - string
+    >address - string
+
+user_account
+    >user_id - integer (primary key)
+    >account type - integer (admin, clerk)
+    >name (first, middle, last) - string
+    >position - string
+    >contact_no - string
