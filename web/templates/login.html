@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "index.html" %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block title %} CDJ login {% endblock %}
 
-  <title>CDJ Login</title>
-  <link rel="icon" href="imgs/cdj_emblem.png" type="image/x-icon"/>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+{% block head %}
 
   <style>
     #main {
@@ -41,7 +32,7 @@
     }
 
     body {
-        background-image: url(imgs/back1.jpg);
+        background-image: url( {{ url_for('static',filename='images/back1.jpg') }} );
         background-attachment: fixed;
         background-position: center;
         background-size: 111%;
@@ -49,17 +40,15 @@
   
   </style>
 
-</head>
+{% endblock %}
 
-
-
-<body>
+{% block body %}
 
     <div id="main">
         
         <div class="form-group">
             <div class="row">
-                <img src="imgs/cdj_emblem.png" id="emblem">
+                <img src="{{url_for('static',filename='images/cdj_emblem.png')}}" id="emblem">
                 <br/>
                 <span style="font-weight:600; letter-spacing:4px;">CDJ Accounting Services</span>
             </div>
@@ -81,6 +70,4 @@
         </div>
     </div>
 
-</body>
-
-</html>
+{% endblock %}

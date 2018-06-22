@@ -2,19 +2,38 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Create User</title>
-  <link rel="icon" href="imgs/cdj_emblem.png" type="image/x-icon"/>
+  <title> {% block title %} Dashboard {%endblock %}</title>
+  <link rel="icon" href="{{url_for( 'static', filename='images/cdj_emblem.png' )}}" type="image/x-icon"/>
 
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
+    {% block head %}
   <style>
+
+      #sidebar {
+          width:16%;
+          height:-webkit-fill-available;
+          padding-top:5%;
+          background-color:#2e6798;
+          border-right:1px solid grey;
+          position: fixed;
+      }
+
+      .side-button {
+          width:100%;
+          border-radius: unset;
+          text-align:left;
+          padding-left:8%;
+          border:unset;
+
+      }
 
         #main {
             position:absolute;
@@ -23,37 +42,16 @@
             z-index:1;
         }
 
-        #navigation-bar {
-            z-index:2;
-            border-radius:unset;
-            position:fixed;
-            width:100%;
-            box-shadow:0px 1px 20px 0px #2e6798;
-        }
-
-        #container {
-            width: 50%;
-            margin-left: auto;
-            margin-right: auto;
-            height: -webkit-fill-available;
-            padding-top: 6%;
-            /* box-shadow: 0px 0px 8px 0px; */
-        }
-
-        .row {
-            margin-bottom: 4%;
-        }
-
-
   </style>
-
+    {% endblock %}
 </head>
 
 
 
 <body>
 
-    <nav id="navigation-bar" class="navbar navbar-inverse">
+
+    <nav class="navbar navbar-inverse" style="z-index:2;border-radius:unset;position:fixed;width:100%;box-shadow:0px 1px 20px 0px #2e6798">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">
@@ -64,7 +62,7 @@
             </div>
     
             <ul class="nav navbar-nav">
-                
+
                 <form class="navbar-form navbar-left">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search Client">
@@ -73,7 +71,7 @@
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
                 </form>
-
+                <!-- </li> -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         BOOKS <span class="caret"></span>
@@ -91,7 +89,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="active dropdown" style="border-left:10px solid;">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="badge">
                             <span class="glyphicon glyphicon-user"></span>
                         </span>
@@ -107,59 +105,50 @@
     
         </div>
     </nav>
-        
 
-    <div id="container">
-        <div class="row">
-            <div class="col-lg-12" style="font-size: 5ch;">
-                Create Additional User
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4">
-                <label for="firstN">First name</label>
-                <input id="firstN" type="text" class="form-control">
-            </div>
+    {% block body %}
 
-            <div class="col-lg-4">
-                <label for="middleN">Middle name</label>
-                <input id="middleN" type="text" class="form-control">
-            </div>
+    <div id="main">
 
-            <div class="col-lg-4">
-                <label for="lastN">Last name</label>
-                <input id="lastN" type="text" class="form-control">
+        <div id="sidebar">
+            <div class="row">
+                <div class="col-lg-12">
+                    <button class="btn btn-primary side-button">Cash Receipt Journal</button>
+                </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-6">
-                <label for="username">Username</label>
-                <input id="username" type="text" class="form-control">
+            <div class="row">
+                <div class="col-lg-12">
+                    <button class="btn btn-primary side-button">Cash Disbursement Journal</button>
+                </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-6">
-                <label for="pass">Password</label>
-                <input id="pass" type="password" class="form-control">
+            <div class="row">
+                <div class="col-lg-12">
+                    <button class="btn btn-primary side-button">Sales Journal</button>
+                </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-6">
-                <label for="conf-pass">Confirm Password</label>
-                <input id="conf-pass" type="password" class="form-control">
+            <div class="row">
+                <div class="col-lg-12">
+                    <button class="btn btn-primary side-button">Purchase Journal</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <button class="btn btn-primary side-button">General Journal</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <button class="btn btn-primary side-button">General Ledger</button>
+                </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-lg-4">
-                <button class="btn btn-success" style="width:100%;">
-                    Create User
-                </button>
-            </div>
+        <div>
+
         </div>
+
     </div>
+
+    {% endblock %}
 
 </body>
