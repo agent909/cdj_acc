@@ -1,0 +1,12 @@
+cash receipt journal
+    >receipt id - integer (primary key)
+    >date - date
+    >particulars (received from) - string
+    >schedule - string
+    >doc# (OR#) - integer
+    >cash - numeric
+    >account payable - numeric
+    >value added tax (VAT) revenue - numeric
+    >gross revenue - numeric
+    >accounts (e.g. "EWT" etc) - python dictionary
+    
