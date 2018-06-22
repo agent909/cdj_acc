@@ -1,0 +1,83 @@
+{% extends "index.html" %}
+
+{% block title %} Cash Receipt Book {% endblock %}
+
+{% block head %}
+
+    #entry_table{
+        margin-top: 8%;
+        padding: 10px;
+        box-shadow: 0px 0px 5px -2px;
+        border-radius: 5px;
+    }
+
+    td {
+        width:100px;
+    }
+
+{% endblock %}
+
+{% block body %}
+
+<div id="main" style="padding: 0% 2%;" >
+    <div class="row">
+        <div class="col-lg-3">
+
+        </div>
+
+        <div class="col-lg-9" id="entry_table" style="overflow:scroll;">
+            <table class="table table-bordered table-hover">
+
+                <thead style="text-align:center;font-weight:bold;">
+                    <tr>
+                        <td>Date</td>
+                        <td>Particulars</td>
+                        <td>Schedule</td>
+                        <td>Doc#</td>
+                        <td>Cash</td>
+                        <td>A/P</td>
+                        <td>VAT Rev.</td>
+                        <td>Gross Rev.</td>
+                        <td>VAT Out</td>
+                        <td>EWT</td>
+                        <td>EWT</td>
+                        <td>EWT</td>
+                        <td>EWT</td>
+                        <td>EWT</td>
+                        <td>EWT</td>
+                        <td>EWT</td>
+                        <td>EWT</td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>DR</td>
+                        <td colspan="4">CR</td>
+                        <td>DR</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>6-12-18</td>
+                        <td>Juan Dela Cruz</td>
+                        <td>item</td>
+                        <td>143</td>
+                        <td>1700</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

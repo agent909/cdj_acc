@@ -12,15 +12,14 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/registration')
+@app.route('/create.account')
 def add_user():
     return render_template('register.html')
 
 
-@app.route('/test')
-def test():
-    return render_template('test.html')
-
+@app.route('/cash.receipt.book')
+def cash_receipt_b():
+    return render_template('cash_receipt_b.html')
 
 
 if __name__ == '__main__':
