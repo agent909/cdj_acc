@@ -1,11 +1,21 @@
-{% extends "index.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %} CDJ login {% endblock %}
+<head>
 
-{% block head %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title> CDJ Login</title>
+  <link rel="icon" href="{{url_for( 'static', filename='images/cdj_emblem.png' )}}" type="image/x-icon"/>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <style>
-    #main {
+    #main_container {
         background-color: #ffffffc4;
         width: 25%;
         display: block;
@@ -40,11 +50,10 @@
   
   </style>
 
-{% endblock %}
+</head>
 
-{% block body %}
-
-    <div id="main">
+<body>
+    <div id="main_container">
         
         <div class="form-group">
             <div class="row">
@@ -69,5 +78,6 @@
             </div>
         </div>
     </div>
+</body>
 
-{% endblock %}
+</html>

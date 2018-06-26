@@ -14,8 +14,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <style>
     {% block head %}
+    <style>
+
 
 
       #sidebar {
@@ -36,9 +37,6 @@
 
       }
 
-
-    {% endblock %}
-
     #main {
         position:absolute;
         width:100%;
@@ -47,6 +45,8 @@
     }
 
     </style>
+
+    {% endblock %}
 </head>
 
 
@@ -54,10 +54,10 @@
 <body>
 
 
-    <nav class="navbar navbar-inverse" style="z-index:2;border-radius:unset;position:fixed;width:100%;box-shadow:0px 1px 20px 0px #2e6798">
+    <nav class="navbar navbar-inverse" style="z-index:2;border-radius:unset;position:fixed;width:100%;box-shadow:0px 1px 10px 0px #2e6798">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/dashboard">
                     <span style="color:#52af52;">C</span>
                     <span>D</span>
                     <span>J</span>
@@ -80,7 +80,7 @@
                         BOOKS <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Cash Receipt Journal</a></li>
+                        <li><a href="">Cash Receipt Journal</a></li>
                         <li><a href="#">Cash Disbursement Journal</a></li>
                         <li><a href="#">Sales Journal</a></li>
                         <li><a href="#">Purchase Journal</a></li>
@@ -101,7 +101,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">Advanced settings</a></li>
                         <li><a href="#">Add account</a></li>
-                        <li><a href="#">Logout</a></li>
+                        <li><a href="/">Logout</a></li>
                     </ul>
                 </li>
             </ul>

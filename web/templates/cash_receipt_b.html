@@ -4,6 +4,7 @@
 
 {% block head %}
 
+<style>
     #entry_table{
         margin-top: 8%;
         padding: 10px;
@@ -11,27 +12,82 @@
         border-radius: 5px;
     }
 
-    td {
-        width:100px;
+    <!--th {-->
+        <!--width:150px;-->
+    <!--}-->
+
+    <!--td {-->
+        <!--&lt;!&ndash;border: 1px solid red;&ndash;&gt;-->
+        <!--border: 1px solid #d81f1f;-->
+    <!--}-->
+
+    .button_right {
+        width:100%;
+        margin-bottom:2px;
     }
+
+    #particulars {
+        width:150px;
+    }
+
+    body {
+        background-color:#fffff5;
+    }
+
+</style>
+
+
+<script>
+    $(document).ready(function(){
+        $("#add_account").click(function(){
+
+            var name = $("#name").val();
+            if(name == ""){
+                alert("you must fill the account name");
+                return;
+            }
+
+            <!--alert(name);-->
+            $("#t_header").append("<td colspan='2'>"+name+"</td>");
+            $("#entry_type").append(" <td>DR</td><td>CR</td> ");
+
+            $("#1").append(" <td></td><td></td> ");
+
+            <!--var edit_regions = $("#1").children();-->
+            <!--alert(edit_regions);-->
+        });
+    });
+</script>
 
 {% endblock %}
 
 {% block body %}
 
 <div id="main" style="padding: 0% 2%;" >
-    <div class="row">
-        <div class="col-lg-3">
 
+    <div class="row" style="padding-top: 5%;">
+
+        <div class="row" style="padding: 0 2%;font-size:medium;">
+            <div class="col-lg-6">
+                Client Name: JUAN DELA CRUZ
+            </div>
+            <div class="col-lg-6" style="text-align:right;">
+                Month of: JUNE 2018
+            </div>
         </div>
 
-        <div class="col-lg-9" id="entry_table" style="overflow:scroll;">
-            <table class="table table-bordered table-hover">
+        <div class="row" style="text-align:center;font-size:x-large;margin-bottom:1%;">
+            CASH RECEIPT JOURNAL
+        </div>
 
-                <thead style="text-align:center;font-weight:bold;">
-                    <tr>
+        <div class="col-lg-10" style="width:90%; overflow:scroll;height:400px;border: 2px solid gray;border-radius:5px;padding:1%;">
+            <table class="table table-bordered table-hover" style="background-color:#f0fff0ba;">
+
+                <thead style="text-align:center;font-weight:bold;border: 1px solid green">
+                    <tr style="background-color:#76e676;" id="t_header">
+                        <td></td>
                         <td>Date</td>
-                        <td>Particulars</td>
+                        <td id="particulars">Particulars</td>
                         <td>Schedule</td>
                         <td>Doc#</td>
                         <td>Cash</td>
@@ -39,28 +95,25 @@
                         <td>VAT Rev.</td>
                         <td>Gross Rev.</td>
                         <td>VAT Out</td>
-                        <td>EWT</td>
-                        <td>EWT</td>
-                        <td>EWT</td>
-                        <td>EWT</td>
-                        <td>EWT</td>
-                        <td>EWT</td>
-                        <td>EWT</td>
-                        <td>EWT</td>
 
                     </tr>
-                    <tr>
+                    <tr id="entry_type">
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td>DR</td>
                         <td colspan="4">CR</td>
-                        <td>DR</td>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
+                <tbody id="entry">
+                    <tr id="1">
+                        <td>
+                            <button class="btn btn-warning">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                        </td>
                         <td>6-12-18</td>
                         <td>Juan Dela Cruz</td>
                         <td>item</td>
@@ -70,14 +123,61 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
                     </tr>
                 </tbody>
 
             </table>
         </div>
+        <div class="col-lg-2" style="width:10%;padding: 0% 2%;">
+            <div class="row">
+                <button class="btn btn-primary button_right" id="add_entry" style="height:50px;font-weight:bold;">
+                    ADD ENTRY
+                </button>
+            </div>
+            <div class="row">
+                <button class="btn btn-primary button_right" data-toggle="modal" data-target="#modal_acc">
+                    Add account
+                </button>
+            </div>
+        </div>
 
     </div>
+
+    <div class="row" style="margin-top:2%;">
+        <div class="panel panel-success" style="border:1px solid dimgrey;">
+            <div class="panel-heading" style="background-color:#868888;color:white;">
+                SUMMARY
+            </div>
+            <div class="panel-body">
+                ffff
+            </div>
+            <div class="panel-footer">
+                zzzz
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<div class="container">
+  <!-- MODAL -->
+  <div class="modal fade" id="modal_acc" role="dialog">
+     <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Account</h4>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" placeholder="account name" id="name">
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success" data-dismiss="modal" id="add_account" style="width:100%;">ADD</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 {% endblock %}
