@@ -39,6 +39,10 @@
 
 <script>
     $(document).ready(function(){
+        $("#add_account_modal").click(function(){
+            $("#name").val("");
+        })
+
         $("#add_account").click(function(){
 
             var name = $("#name").val();
@@ -80,7 +84,7 @@
             CASH RECEIPT JOURNAL
         </div>
 
-        <div class="col-lg-10" style="width:90%; overflow:scroll;height:400px;border: 2px solid gray;border-radius:5px;padding:1%;">
+        <div class="col-lg-10" style="font-size:11px; background-color:#ececec; width:90%; overflow:scroll;height:400px;border: 2px solid gray;border-radius:5px;padding:1%;">
             <table class="table table-bordered table-hover" style="background-color:#f0fff0ba;">
 
                 <thead style="text-align:center;font-weight:bold;border: 1px solid green">
@@ -135,7 +139,7 @@
                 </button>
             </div>
             <div class="row">
-                <button class="btn btn-primary button_right" data-toggle="modal" data-target="#modal_acc">
+                <button id="add_account_modal" class="btn btn-primary button_right" data-toggle="modal" data-target="#modal_acc">
                     Add account
                 </button>
             </div>

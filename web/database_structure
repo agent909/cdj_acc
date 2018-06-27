@@ -1,4 +1,50 @@
-cash receipt journal
+accounts table
+    >id - integer (primary key)
+    >name - string (unique)
+    >account_type - string
+
+entry table
+    >transaction_id - integer (primary)
+    >account_id - integer
+    >date - date
+    >cash - number
+
+cash in bank table
+    >id - integer (primary)
+    >transaction_id - integer
+    >date - date
+    >cash - number
+
+cash account table
+    >id - integer (primary)
+    >transaction_id - integer
+    >date - date
+    >cash - number
+
+accounts payable table
+    >id - integer (primary)
+    >transaction_id - integer
+    >date - date
+    >cash - number
+
+client
+    >client_id - integer (primary key)
+    >name (firstname, middlename, lastname)
+    >contact# - string
+    >address - string
+
+user_account
+    >user_id - integer (primary key)
+    >account type - integer (0- admin,1- clerk)
+    >name (first, middle, last) - string
+    >username - firstname.lastname (auto generate)
+    >position - string
+    >contact_no - string
+    >password - encrypted
+
+how to connect to other tables? its an interlinking connections!
+
+XXXXX cash receipt journal entry
     >receipt_id - integer (primary key)
     >client_id - integer ( connect to client table )
     >date - date
@@ -11,15 +57,3 @@ cash receipt journal
     >gross revenue - numeric
     >accounts (e.g. "EWT" etc) - python dictionary
 
-client
-    >client_id - integer (primary key)
-    >name (firstname, middlename, lastname)
-    >contact# - string
-    >address - string
-
-user_account
-    >user_id - integer (primary key)
-    >account type - integer (admin, clerk)
-    >name (first, middle, last) - string
-    >position - string
-    >contact_no - string
