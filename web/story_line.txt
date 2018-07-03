@@ -1,0 +1,48 @@
+USER STORIES
+
+ADD CLIENT
+the accountant(admin)
+>should be able to add a new client
+>should be able to input basic details about the client or the company
+
+SEARCH CLIENT
+the accountant or the bookkeeper
+>should be able to search for the name (firstname/middlename/lastname) of the client
+    or the name of the company on the search bar
+
+ADD ENTRY
+the accountant or the bookkeeper
+>should be able to input a transaction
+>should be able to select an account for the transaction
+>should be able to edit the entry (admin privilege)
+>should be able to choose whether to debit or credit? (probably not necessary)
+
+ADD ACCOUNT
+the accountant or the bookkeeper or the programmer
+>should be able to add an account
+>the user should have knowledge about DATABASE
+>the user or programmer (maintenance/update) should be able to create/change the database structure of the account
+       ->the programmer should be able to transfer data from one table to another similar table
+            specifying the columns to be transported.
+
+GENERATE GENERAL LEDGER
+the accountant or the bookkeeper
+>should be able to generate general ledger
+
+GENERATE TRIAL BALANCE
+the accountant or the bookkeeper
+>should be able to generate trial balance
+
+GENERATE INCOME STATEMENT
+the accountant or the bookkeeper
+>should be able to generate income statement
+
+ADD/DELETE USER ACCOUNT
+the admin or the accountant
+>should be able to delete/add a user (less privilege)
+
+ACTIVITY LOGS
+the admin
+>should be able to see the activities of the users like
+    changing/editing of entry of client
+    date and time of login
