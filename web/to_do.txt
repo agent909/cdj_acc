@@ -1,0 +1,6 @@
+Create Database Structure
+
+Create Draft of UI
+
+if UI is approved:
+    CREATE functions

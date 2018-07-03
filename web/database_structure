@@ -2,6 +2,10 @@
 *Every release of cash must have a CASH VOUCHER
 *
 
+CHART OF ACCOUNTS
+    >account_name
+    >column_names
+
 what is the layout of an input for entry?
 	depende sa entry..
 
