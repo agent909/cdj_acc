@@ -2,15 +2,32 @@
 *Every release of cash must have a CASH VOUCHER
 *
 
-CHART OF ACCOUNTS
-    >account_name
-    >column_names
+client
+    >client_id - integer (primary key)
+    >name (first name, middle name, last name)
+    >contact# - string
+    >address - string
+    >company_name - string
+
+entry table
+    >transaction_id - integer (primary)
+    >account_id - integer (refers to an account) (foreign)
+    >client_id - integer (foreign)
+    >date - date
+    >cash - number
+
+NOTE: kapag may pumasok na data sa entry table, maglalagay din sya ng entry sa isang account base sa account_id
+
+CHART OF ACCOUNTS -
+    >account_id -
+    >account_name -
+    >column_names -
 
 what is the layout of an input for entry?
 	depende sa entry..
 
 	ACCOUNT RECEIVABLE
-		>date
+		>date -
 		>sold to
 		>particulars (item)
 		>schedule
@@ -49,12 +66,7 @@ accounts table
     >name - string (unique)
     >account_type - string
 
-entry table
-    >transaction_id - integer (primary)
-    >account_id - integer
-    >client_id - integer(foreign)
-    >date - date
-    >cash - number
+
 
 cash in bank table
     >id - integer (primary)
@@ -77,11 +89,6 @@ accounts payable table
     >date - date
     >cash - number
 
-client
-    >client_id - integer (primary key)
-    >name (first name, middle name, last name)
-    >contact# - string
-    >address - string
 
 user_account
     >user_id - integer (primary key)

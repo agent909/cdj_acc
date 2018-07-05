@@ -2,23 +2,26 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 import os
 
+from models import *
+
 app = Flask(__name__)
 
-DBdir = os.getcwd()
+DB_directory = os.getcwd()
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+DBdir.replace("\\","/")+'/sqlite/db1.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+DB_directory.replace("\\", "/")+'/sqlite/data.sqlite'
 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False;
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
+# do_this = "db.session.add(User(username='user3'))"
+# entry = exec(do_this)
 
-    def __repr__(self):
-        return '<User %r>' % self.username
+# print(entry)
 
-db.create_all()
+# user = User(username='user6', email='email@gmail.com')
+# db.session.add(user)
+# db.session.commit()
+
 
 @app.route('/')
 def index():

@@ -17,14 +17,14 @@ the accountant or the bookkeeper
 >should be able to edit the entry (admin privilege)
 >should be able to choose whether to debit or credit? (probably not necessary)
 
-ADD ACCOUNT
+ADD/DELETE ACCOUNT
 the accountant or the bookkeeper or the programmer
 >should be able to add an account
 >the user should have knowledge about DATABASE
 >the user or programmer (maintenance/update) should be able to create/change the database structure of the account
        ->the programmer should be able to transfer data from one table to another similar table
             specifying the columns to be transported.
-        ->specify its relationship to other accounts
+       ->specify its relationship to other accounts
 
 GENERATE GENERAL LEDGER
 the accountant or the bookkeeper
