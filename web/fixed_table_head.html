@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        body { height: 1000px; }
+
+        #header-fixed {
+            position: fixed;
+            top: 0px; display:none;
+            background-color:white;
+            width:100%;
+        }
+    </style>
+
+    <script>
+        var tableOffset = $("#table-1").offset().top;
+        var $header = $("#table-1 > thead").clone();
+        var $fixedHeader = $("#header-fixed").append($header);
+
+        $(window).bind("scroll", function() {
+            var offset = $(this).scrollTop();
+
+            if (offset >= tableOffset && $fixedHeader.is(":hidden")) {
+                $fixedHeader.show();
+            }
+            else if (offset < tableOffset) {
+                $fixedHeader.hide();
+            }
+        });
+    </script>
+</head>
+
+
+<div class="container" style="width:100%;">
+  <table class="table table-hover" id="table-1">
+      <thead>
+          <tr>
+              <th>Col1</th>
+              <th>Col2</th>
+              <th>Col3</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>info</td>
+              <td>info</td>
+              <td>info</td>
+          </tr>
+          <tr>
+              <td>info</td>
+              <td>info</td>
+              <td>info</td>
+          </tr>
+          <tr>
+              <td>info</td>
+              <td>info</td>
+              <td>info</td>
+          </tr>
+      </tbody>
+  </table>
+  <table class="table table-hover" id="header-fixed" style="width:100%;"></table>
+</div>
+
+</html>

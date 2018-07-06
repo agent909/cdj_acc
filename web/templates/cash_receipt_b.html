@@ -5,6 +5,13 @@
 {% block head %}
 
 <style>
+    #header-fixed {
+        position: fixed;
+        top: 0px; display:none;
+        background-color:white;
+        width:100%;
+    }
+
     #entry_table{
         margin-top: 8%;
         padding: 10px;
@@ -39,28 +46,123 @@
 
 <script>
     $(document).ready(function(){
-        $("#add_account_modal").click(function(){
-            $("#name").val("");
-        })
+        var tableOffset = $("#table-1").offset().top;
+        var $header = $("#table-1 > thead").clone();
+        var $fixedHeader = $("#header-fixed").append($header);
 
-        $("#add_account").click(function(){
+        var mywidth = $('#table-1').width();
+        alert($('#table-1').width());
 
-            var name = $("#name").val();
-            if(name == ""){
-                alert("you must fill the account name");
-                return;
+        $("#header-fixed").css("width", mywidth)
+
+        $("#xiao").bind("scroll", function() {
+            var offset = $(this).scrollTop();
+
+            if (offset >= tableOffset && $fixedHeader.is(":hidden")) {
+                $fixedHeader.show();
             }
-
-            <!--alert(name);-->
-            $("#t_header").append("<td colspan='2'>"+name+"</td>");
-            $("#entry_type").append(" <td>DR</td><td>CR</td> ");
-
-            $("#1").append(" <td></td><td></td> ");
-
-            <!--var edit_regions = $("#1").children();-->
-            <!--alert(edit_regions);-->
+            else if (offset < tableOffset) {
+                $fixedHeader.hide();
+            }
         });
     });
+
+     $(function () {
+   var bindDatePicker = function() {
+		$(".date").datetimepicker({
+        format:'YYYY-MM-DD',
+			icons: {
+				time: "fa fa-clock-o",
+				date: "fa fa-calendar",
+				up: "fa fa-arrow-up",
+				down: "fa fa-arrow-down"
+			}
+		}).find('input:first').on("blur",function () {
+			// check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
+			// update the format if it's yyyy-mm-dd
+			var date = parseDate($(this).val());
+
+			if (! isValidDate(date)) {
+				//create date based on momentjs (we have that)
+				date = moment().format('YYYY-MM-DD');
+			}
+
+			$(this).val(date);
+		});
+	}
+
+   var isValidDate = function(value, format) {
+		format = format || false;
+		// lets parse the date to the best of our knowledge
+		if (format) {
+			value = parseDate(value);
+		}
+
+		var timestamp = Date.parse(value);
+
+		return isNaN(timestamp) == false;
+   }
+
+   var parseDate = function(value) {
+		var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
+		if (m)
+			value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
+
+		return value;
+   }
+
+   bindDatePicker();
+ });
+
+
+<!-- date time picker -->
+
+ $(function () {
+   var bindDatePicker = function() {
+		$(".date").datetimepicker({
+        format:'YYYY-MM-DD',
+			icons: {
+				time: "fa fa-clock-o",
+				date: "fa fa-calendar",
+				up: "fa fa-arrow-up",
+				down: "fa fa-arrow-down"
+			}
+		}).find('input:first').on("blur",function () {
+			// check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
+			// update the format if it's yyyy-mm-dd
+			var date = parseDate($(this).val());
+
+			if (! isValidDate(date)) {
+				//create date based on momentjs (we have that)
+				date = moment().format('YYYY-MM-DD');
+			}
+
+			$(this).val(date);
+		});
+	}
+
+   var isValidDate = function(value, format) {
+		format = format || false;
+		// lets parse the date to the best of our knowledge
+		if (format) {
+			value = parseDate(value);
+		}
+
+		var timestamp = Date.parse(value);
+
+		return isNaN(timestamp) == false;
+   }
+
+   var parseDate = function(value) {
+		var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
+		if (m)
+			value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
+
+		return value;
+   }
+
+   bindDatePicker();
+ });
 </script>
 
 {% endblock %}
@@ -83,9 +185,12 @@
         <div class="row" style="text-align:center;font-size:x-large;margin-bottom:1%;">
             CASH RECEIPT JOURNAL
         </div>
+        <div class="row" style="text-align:center;">
+            <button class="btn btn-primary" style="width:98%;margin-bottom:5px;" data-toggle="modal" data-target="#modal_acc">Add Entry</button>
+        </div>
 
-        <div class="col-lg-10" style="font-size:11px; background-color:#ececec; width:90%; overflow:scroll;height:400px;border: 2px solid gray;border-radius:5px;padding:1%;">
-            <table class="table table-bordered table-hover" style="background-color:#f0fff0ba;">
+        <div class="col-lg-12" style="font-size:11px; background-color:#ececec; width:100%; overflow:scroll;height:400px;border: 2px solid gray;border-radius:5px;padding:1%;" id="xiao">
+            <table class="table table-bordered table-hover" style="background-color:#f0fff0ba;" id="table-1">
 
                 <thead style="text-align:center;font-weight:bold;border: 1px solid green">
                     <tr style="background-color:#76e676;" id="t_header">
@@ -112,6 +217,7 @@
                     </tr>
                 </thead>
                 <tbody id="entry">
+                    {% for x in range(10) %}
                     <tr id="1">
                         <td>
                             <button class="btn btn-warning">
@@ -128,22 +234,25 @@
                         <td></td>
                         <td></td>
                     </tr>
+                    {% endfor %}
                 </tbody>
 
             </table>
+
+            <table class="table table-hover" id="header-fixed"></table>
         </div>
-        <div class="col-lg-2" style="width:10%;padding: 0% 2%;">
-            <div class="row">
-                <button class="btn btn-primary button_right" id="add_entry" style="height:50px;font-weight:bold;">
-                    ADD ENTRY
-                </button>
-            </div>
-            <div class="row">
-                <button id="add_account_modal" class="btn btn-primary button_right" data-toggle="modal" data-target="#modal_acc">
-                    Add account
-                </button>
-            </div>
-        </div>
+        <!--<div class="col-lg-2" style="width:10%;padding: 0% 2%;">-->
+            <!--<div class="row">-->
+                <!--<button class="btn btn-primary button_right" id="add_entry" style="height:50px;font-weight:bold;">-->
+                    <!--ADD ENTRY-->
+                <!--</button>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+                <!--<button id="add_account_modal" class="btn btn-primary button_right" data-toggle="modal" data-target="#modal_acc">-->
+                    <!--Add account-->
+                <!--</button>-->
+            <!--</div>-->
+        <!--</div>-->
 
     </div>
 
@@ -166,18 +275,54 @@
 <div class="container">
   <!-- MODAL -->
   <div class="modal fade" id="modal_acc" role="dialog">
-     <div class="modal-dialog modal-sm">
+     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add Account</h4>
+          <h4 class="modal-title">Add Entry</h4>
         </div>
         <div class="modal-body">
-          <input type="text" class="form-control" placeholder="account name" id="name">
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="input-group date" id="datepicker1">
+                            <input type="text" class="form-control">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <label for="or">Doc#</label>
+                    <input type="text" id="or" placeholder="OR#" class="form-control">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <input type="text" placeholder="Sold to:" class="form-control">
+                    </div>
+                    <div class="row">
+                        <input type="text" placeholder="Particulars" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row">Cash</div>
+                    <div class="row">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+
         </div>
+
         <div class="modal-footer">
           <button type="submit" class="btn btn-success" data-dismiss="modal" id="add_account" style="width:100%;">ADD</button>
         </div>
+
       </div>
     </div>
   </div>

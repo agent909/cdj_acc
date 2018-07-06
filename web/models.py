@@ -49,21 +49,22 @@ class Account(db.Model):
 #insert into account(account_name) values('Account Payable');
 
 
-class Cash(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    client_id = db.Column(db.Integer, nullable=False)
-    transaction_id = db.Column(db.Integer, nullable=False)
-    debit = db.Column(db.Numeric, default=0)
-    credit = db.Column(db.Numeric, default=0)
-
-    def __repr__(self):
-        return '<cash>'
+# class Cash(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     client_id = db.Column(db.Integer, nullable=False)
+#     transaction_id = db.Column(db.Integer, nullable=False)
+#     debit = db.Column(db.Numeric, default=0)
+#     credit = db.Column(db.Numeric, default=0)
+#
+#     def __repr__(self):
+#         return '<cash>'
 
 
 class AccountPayable(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.Integer, nullable=False)
     transaction_id = db.Column(db.Integer, nullable=False)
+    date = db.Column(db.DateTime, nullable=False)
     or_number = db.Column(db.Integer, nullable=True)
     sold_to = db.Column(db.Integer, nullable=True)
     particulars = db.Column(db.Integer, nullable=True)
