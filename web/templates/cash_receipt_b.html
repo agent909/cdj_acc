@@ -19,15 +19,6 @@
         border-radius: 5px;
     }
 
-    <!--th {-->
-        <!--width:150px;-->
-    <!--}-->
-
-    <!--td {-->
-        <!--&lt;!&ndash;border: 1px solid red;&ndash;&gt;-->
-        <!--border: 1px solid #d81f1f;-->
-    <!--}-->
-
     .button_right {
         width:100%;
         margin-bottom:2px;
@@ -47,6 +38,7 @@
 
     $(document).ready(function() {
         $("#pickdate").datepicker();
+        $("#pickdate2").datepicker();
     });
 
 
@@ -64,9 +56,9 @@
             <div class="col-lg-6">
                 Client Name: JUAN DELA CRUZ
             </div>
-            <div class="col-lg-6" style="text-align:right;">
-                Month of: JUNE 2018
-            </div>
+            <!--<div class="col-lg-6" style="text-align:right;">-->
+                <!--Month of: JUNE 2018-->
+            <!--</div>-->
         </div>
 
         <div class="row" style="text-align:center;font-size:x-large;margin-bottom:1%;">
@@ -104,7 +96,7 @@
                     </tr>
                 </thead>
                 <tbody id="entry">
-                    {% for x in range(10) %}
+                    {% for x in range(5) %}
                     <tr id="1">
                         <td>
                             <button class="btn btn-warning">
@@ -164,6 +156,7 @@
   <div class="modal fade" id="modal_acc" role="dialog">
      <div class="modal-dialog modal-lg">
       <div class="modal-content">
+
         <div class="modal-header" style="padding-bottom:0px;">
             <div class="row">
                 <div class="col-lg-2" style="text-align:center;">
@@ -176,6 +169,8 @@
                             <option>Account Payable</option>
                             <option>Cash Advance</option>
                             <option>Salaries and Wages</option>
+                            <option>Sales</option>
+                            <option>Capital</option>
                         </select>
                     </div>
                 </div>
@@ -189,32 +184,45 @@
                 </div>
             </div>
         </div>
-        <div class="modal-body">
 
+        <form method="POST">
+        {{account_form[0].csrf_token}}
+
+        <div class="modal-body">
             <div class="row">
                 <div class="col-lg-2">
                     <label for="pickdate">Date</label>
-                    <input  type="text" id="pickdate" class="form-control" placeholder="MM/DD/YYYY">
+                    <!--<input  type="text" id="pickdate" class="form-control" placeholder="MM/DD/YYYY">-->
+                    {{account_form[0].date(type="text", id="pickdate", class="form-control", placeholder="MM/DD/YYYY")}}
+                </div>
+                <div class="col-lg-2">
+                    <label for="pickdate2">Schedule</label>
+                    <!--<input  type="text" id="pickdate2" class="form-control" placeholder="MM/DD/YYYY">-->
+                    {{account_form[0].schedule(type="text", id="pickdate2", class="form-control", placeholder="MM/DD/YYYY")}}
                 </div>
                 <div class="col-lg-2">
                     <label for="or">Document no.</label>
-                    <input type="number" id="or" placeholder="OR#" class="form-control">
+                    <!--<input type="number" id="or" placeholder="OR#" class="form-control">-->
+                    {{account_form[0].or_number(type="number", id="or", class="form-control", placeholder="OR#")}}
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-8">
                     <div class="row">
-                        <input type="text" placeholder="Sold to:" style="margin: 1% auto;width:95%;" class="form-control">
+                        <!--<input type="text" placeholder="Sold to:" style="margin: 1% auto;width:95%;" class="form-control">-->
+                        {{account_form[0].sold_to(type="text", class="form-control", placeholder="Sold to:", style="margin: 1% auto;width:95%;")}}
                     </div>
                     <div class="row">
-                        <input type="text" placeholder="Particulars" style="margin: 1% auto;width:95%;" class="form-control">
+                        <!--<input type="text" placeholder="Particulars" style="margin: 1% auto;width:95%;" class="form-control">-->
+                        {{account_form[0].particulars(type="text", placeholder="Particulars", style="margin: 1% auto;width:95%;", class="form-control")}}
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="row" style="text-align:center;">
                         <label for="cash">CASH</label>
-                        <input type="number" id="cash" placeholder="Php 0.00 " style="margin: 1% auto; width:95%;" class="form-control">
+                        <!--<input type="number" id="cash" placeholder="Php 0.00 " style="margin: 1% auto; width:95%;" class="form-control">-->
+                        {{account_form[0].cash(type="number", id="cash", placeholder="Php 0.00 ", style="margin: 1% auto; width:95%;", class="form-control")}}
                     </div>
                 </div>
             </div>
@@ -222,8 +230,12 @@
         </div>
 
         <div class="modal-footer">
-          <button type="submit" class="btn btn-success" data-dismiss="modal" id="add_account" style="width:100%;height:50px">ADD</button>
+          <!--<button type="submit" class="btn btn-success" data-dismiss="modal" id="add_account" style="width:100%;height:50px">ADD</button>-->
+           {{account_form[0].submit(class="btn btn-success", id="add_account", style="width:100%;height:50px;")}}
         </div>
+      </form>
+
+      </div>
 
       </div>
     </div>

@@ -1,0 +1,14 @@
+how to create one page with multiple forms
+-dynamic submission of forms using FLaskWTForms?
+
+solution: pass all the CLASS forms to the template for it to have all the structure of forms.
+            create a script that will call the template / get the structure of the SELECTED FORM.
+
+            The script will clear the current element that contains the form then appends the selected form.
+
+            for submission, the controller must know which form has been selected through passing a value.
+            this requires that every class form must include an ID that will be checked by the controller.
+            after that the controller will check the validity of the forms according to the ID.
+
+            to dynamically update the page use ajax request to server. the server will send back the updated list.
+            or the server will only send back the last entry.
