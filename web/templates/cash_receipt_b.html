@@ -33,15 +33,18 @@
     }
 </style>
 
+<script src="{{url_for('static', filename='scripts/load_account.js')}}"></script>
 
 <script>
 
     $(document).ready(function() {
         $("#pickdate").datepicker();
         $("#pickdate2").datepicker();
+
+        var my_element = $.get("{{url_for('static', filename='templates/loadexp1.html')}}"+" #import1");
+        alert(my_element);
+        $("#entry_form").append(my_element);
     });
-
-
 </script>
 
 {% endblock %}
@@ -56,9 +59,6 @@
             <div class="col-lg-6">
                 Client Name: JUAN DELA CRUZ
             </div>
-            <!--<div class="col-lg-6" style="text-align:right;">-->
-                <!--Month of: JUNE 2018-->
-            <!--</div>-->
         </div>
 
         <div class="row" style="text-align:center;font-size:x-large;margin-bottom:1%;">
@@ -73,6 +73,7 @@
 
                 <thead style="text-align:center;font-weight:bold;border: 1px solid green">
                     <tr style="background-color:#76e676;" id="t_header">
+                        <td></td>
                         <td></td>
                         <td>Date</td>
                         <td id="particulars">Particulars</td>
@@ -120,19 +121,6 @@
 
             <table class="table table-hover" id="header-fixed"></table>
         </div>
-        <!--<div class="col-lg-2" style="width:10%;padding: 0% 2%;">-->
-            <!--<div class="row">-->
-                <!--<button class="btn btn-primary button_right" id="add_entry" style="height:50px;font-weight:bold;">-->
-                    <!--ADD ENTRY-->
-                <!--</button>-->
-            <!--</div>-->
-            <!--<div class="row">-->
-                <!--<button id="add_account_modal" class="btn btn-primary button_right" data-toggle="modal" data-target="#modal_acc">-->
-                    <!--Add account-->
-                <!--</button>-->
-            <!--</div>-->
-        <!--</div>-->
-
     </div>
 
     <div class="row" style="margin-top:2%;">
@@ -165,17 +153,17 @@
                 <div class="col-lg-8" style="padding: unset;">
                     <div class="form-group" style="text-align:center;">
                         <select class="form-control" id="chart_of_accounts">
-                            <option>Account Receivable</option>
-                            <option>Account Payable</option>
-                            <option>Cash Advance</option>
-                            <option>Salaries and Wages</option>
-                            <option>Sales</option>
-                            <option>Capital</option>
+                            <option value="0">Account Receivable</option>
+                            <option value="1">Account Payable</option>
+                            <option value="2">Cash Advance</option>
+                            <opxtion value="0">Salaries and Wages</opxtion>
+                            <option value="0">Sales</option>
+                            <option value="0">Capital</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-lg-1" style="padding:0 5px;">
-                    <button class="btn btn-default" style="width:65%;">
+                    <button class="btn btn-default" id="qq" style="width:65%;">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
                 </div>
@@ -188,21 +176,18 @@
         <form method="POST">
         {{account_form[0].csrf_token}}
 
-        <div class="modal-body">
+        <div class="modal-body" id="entry_form">
             <div class="row">
                 <div class="col-lg-2">
-                    <label for="pickdate">Date</label>
-                    <!--<input  type="text" id="pickdate" class="form-control" placeholder="MM/DD/YYYY">-->
+                    {{account_form[0].date.label(for="pickdate")}}
                     {{account_form[0].date(type="text", id="pickdate", class="form-control", placeholder="MM/DD/YYYY")}}
                 </div>
                 <div class="col-lg-2">
-                    <label for="pickdate2">Schedule</label>
-                    <!--<input  type="text" id="pickdate2" class="form-control" placeholder="MM/DD/YYYY">-->
+                    {{account_form[0].schedule.label(for="pickdate2")}}
                     {{account_form[0].schedule(type="text", id="pickdate2", class="form-control", placeholder="MM/DD/YYYY")}}
                 </div>
                 <div class="col-lg-2">
-                    <label for="or">Document no.</label>
-                    <!--<input type="number" id="or" placeholder="OR#" class="form-control">-->
+                    {{account_form[0].or_number.label(for="or")}}
                     {{account_form[0].or_number(type="number", id="or", class="form-control", placeholder="OR#")}}
                 </div>
             </div>
@@ -210,18 +195,15 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="row">
-                        <!--<input type="text" placeholder="Sold to:" style="margin: 1% auto;width:95%;" class="form-control">-->
                         {{account_form[0].sold_to(type="text", class="form-control", placeholder="Sold to:", style="margin: 1% auto;width:95%;")}}
                     </div>
                     <div class="row">
-                        <!--<input type="text" placeholder="Particulars" style="margin: 1% auto;width:95%;" class="form-control">-->
                         {{account_form[0].particulars(type="text", placeholder="Particulars", style="margin: 1% auto;width:95%;", class="form-control")}}
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="row" style="text-align:center;">
-                        <label for="cash">CASH</label>
-                        <!--<input type="number" id="cash" placeholder="Php 0.00 " style="margin: 1% auto; width:95%;" class="form-control">-->
+                        {{account_form[0].cash.label(for="cash")}}
                         {{account_form[0].cash(type="number", id="cash", placeholder="Php 0.00 ", style="margin: 1% auto; width:95%;", class="form-control")}}
                     </div>
                 </div>
@@ -229,7 +211,7 @@
 
         </div>
 
-        <div class="modal-footer">
+        <div class="modal-footer" id="entry_form_footer">
           <!--<button type="submit" class="btn btn-success" data-dismiss="modal" id="add_account" style="width:100%;height:50px">ADD</button>-->
            {{account_form[0].submit(class="btn btn-success", id="add_account", style="width:100%;height:50px;")}}
         </div>
@@ -240,7 +222,6 @@
       </div>
     </div>
   </div>
-</div>
 
 
 

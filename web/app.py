@@ -23,6 +23,9 @@ def index():
 def home():
     return render_template('index.html')
 
+@app.route('/testing')
+def testing():
+    return 'this is a test'
 
 @app.route('/create.account')
 def add_user():
@@ -31,10 +34,10 @@ def add_user():
 
 @app.route('/cash.receipt.book')
 def cash_receipt_b():
-    return render_template('cash_receipt_b.html', account_form=idk())
+    return render_template('cash_receipt_b.html', account_form=get_account_forms())
 
 
-def idk():
+def get_account_forms():
     return [AccountReceivableForm()]
 
 

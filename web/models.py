@@ -82,7 +82,7 @@ class AccountReceivable(db.Model):
     client_id = db.Column(db.Integer, nullable=False)
     transaction_id = db.Column(db.Integer, nullable=False)
     date = db.Column(db.DateTime, nullable=False)
-    schedule = db.Column(db.DateTime, nullable=False)#design
+    schedule = db.Column(db.DateTime, nullable=False)
     or_number = db.Column(db.Integer, nullable=True)
     sold_to = db.Column(db.String(200), nullable=True)
     particulars = db.Column(db.String(200), nullable=True)

@@ -6,12 +6,12 @@ from wtforms.validators import DataRequired
 class AccountReceivableForm(FlaskForm):
     client_id = IntegerField(validators=[DataRequired()])
     account_id = IntegerField(validators=[DataRequired()])
-    date = DateField(format='%m/%d/%Y')
-    schedule = DateField(format='%m/%d/%Y')
-    or_number = IntegerField(validators=[DataRequired()])
+    date = DateField('Date', format='%m/%d/%Y')
+    schedule = DateField('Schedule', format='%m/%d/%Y')
+    or_number = IntegerField('Document no', validators=[DataRequired()])
     sold_to = StringField(validators=[DataRequired()])
     particulars = StringField(validators=[DataRequired()])
-    cash = DecimalField(validators=[DataRequired()])
+    cash = DecimalField('cash', validators=[DataRequired()])
     submit = SubmitField('ADD')
 
 
