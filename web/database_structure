@@ -1,3 +1,10 @@
+        {% for x in temp_list %}
+
+        {% include '/acc_temps/'+x with context %}
+
+        {% endfor %}
+
+
 *You can credit or release cash from either CASH IN BANK or CASH ON HAND
 *Every release of cash must have a CASH VOUCHER
 *

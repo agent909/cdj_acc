@@ -34,7 +34,7 @@ class Entry(db.Model):
 
     def __repr__(self):
         return '<Entry %r>' % self.tranaction_id
-#insert into entry(client_id,account_id,cash,date) values(1,1,143,'2007/01/01');
+#insert into entry(client_id,account_id,cash,date) values(1,1,143,'2007-01-01');
 #date time format '2007-01-01 10:00:00' y-m-d t
 
 

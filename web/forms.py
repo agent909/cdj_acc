@@ -5,13 +5,20 @@ from wtforms.validators import DataRequired
 
 class AccountReceivableForm(FlaskForm):
     client_id = IntegerField(validators=[DataRequired()])
+    #account id is used to know what validator to be used
     account_id = IntegerField(validators=[DataRequired()])
-    date = DateField('Date', format='%m/%d/%Y')
-    schedule = DateField('Schedule', format='%m/%d/%Y')
+    date = DateField('Date', format='%m-%d-%Y', validators=[DataRequired()])
+    schedule = DateField('Schedule', format='%m-%d-%Y', validators=[DataRequired()])
     or_number = IntegerField('Document no', validators=[DataRequired()])
     sold_to = StringField(validators=[DataRequired()])
     particulars = StringField(validators=[DataRequired()])
     cash = DecimalField('cash', validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+
+class TestForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    name = StringField(validators=[DataRequired()])
     submit = SubmitField('ADD')
 
 
