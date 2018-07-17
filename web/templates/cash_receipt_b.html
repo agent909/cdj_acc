@@ -41,10 +41,15 @@
         $("#exp1_button").click(function(){
             alert("insert complete");
         });
+
         $("#chart_of_accounts").on('change',function(){
-            if(this.value == 3){
+            if(this.value == 1){
+                $("#account_payable").css("display","unset");
+                $("#account_payable2").css("display","none");
+            }
+            else if(this.value == 2){
+                $("#account_payable2").css("display","unset");
                 $("#account_payable").css("display","none");
-                $("#testform").css("display","unset");
             }
         });
 
@@ -176,7 +181,7 @@
         </div>
 
         {% include 'acc_temps/account_payable.html' with context %}
-        {% include 'acc_temps/testform.html' with context %}
+        {% include 'acc_temps/account_payable2.html' with context %}
 
       </div>
 

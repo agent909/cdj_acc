@@ -16,6 +16,19 @@ class AccountReceivableForm(FlaskForm):
     submit = SubmitField('ADD')
 
 
+class AccountReceivableForm2(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    # account id is used to know what validator to be used
+    account_id = IntegerField(validators=[DataRequired()])
+    date = DateField('Date', format='%m-%d-%Y', validators=[DataRequired()])
+    schedule = DateField('Schedule', format='%m-%d-%Y', validators=[DataRequired()])
+    or_number = IntegerField('Document no', validators=[DataRequired()])
+    sold_to_someone = StringField(validators=[DataRequired()])
+    particulars = StringField(validators=[DataRequired()])
+    cash = DecimalField('cash', validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+
 class TestForm(FlaskForm):
     client_id = IntegerField(validators=[DataRequired()])
     name = StringField(validators=[DataRequired()])

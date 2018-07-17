@@ -1,12 +1,12 @@
     <form method="POST" id="testform" style="display:none;">
-        {{account_form[1].csrf_token}}
+        {{account_form[2].csrf_token}}
         <div class="modal-body" id="entry_form">
             <div class="row">
                 <div class="col-lg-3">
-                    {{account_form[1].name(type="text", class="form-control")}}
+                    {{account_form[2].name(type="text", class="form-control")}}
                 </div>
                 <div class="col-lg-3">
-                    {{account_form[1].client_id(type="number",class="form-control")}}
+                    {{account_form[2].client_id(type="number",class="form-control")}}
                 </div>
             </div>
         </div>
