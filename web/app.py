@@ -37,25 +37,32 @@ def add_user():
 
 @app.route('/cash.receipt.book', methods=['GET','POST'])
 def cash_receipt_b():
-    temp_list = ['tz.html', 'tz1.html', 'tz2.html', 'tz3.html', 'tz4.html', 'tz5.html', ]
-    account_forms = get_account_forms()
-    if account_forms[0].validate_on_submit():
-        # entry = models.Entry(client_id=, account_id=, cash=, date=,)
-        # account_payable = models.AccountPayable(client_id=, transaction_id=, date=, or_number=, )
-        print(0)
-        user = User(username=account_forms[0].sold_to.data, email=account_forms[0].particulars.data)
-        print(1)
-        db.session.add(user)
-        print(2)
-        db.session.commit()
-        print(3)
-        return redirect('/')
+    accounts = Account.query.order_by(Account.account_name).all()
 
-    return render_template('cash_receipt_b.html', account_form=account_forms, temp_list=temp_list)
+    account_forms = get_account_forms()
+    for acc_form in account_forms:
+        if acc_form.validate_on_submit():
+            #Every form class must have a defined method to commit to DB
+
+            # entry = models.Entry(client_id=, account_id=, cash=, date=,)
+            # account_payable = models.AccountPayable(client_id=, transaction_id=, date=, or_number=, )
+            print(0)
+            user = User(username=account_forms[0].sold_to.data, email=account_forms[0].particulars.data)
+            print(1)
+            db.session.add(user)
+            print(2)
+            db.session.commit()
+            print(3)
+            return redirect('/')
+
+    return render_template('cash_receipt_b.html', account_form=account_forms, accounts=accounts)
 
 
 def get_account_forms():
-    return [AccountReceivableForm(), TestForm()]
+    return [
+        AccountReceivableForm(),
+        TestForm()
+    ]
 
 
 if __name__ == '__main__':

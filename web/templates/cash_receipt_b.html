@@ -33,9 +33,11 @@
     }
 </style>
 
-<script src="{{url_for('static', filename='scripts/load_account.js')}}"></script>
+<!--<script src="{{url_for('static', filename='scripts/load_account.js')}}"></script>-->
 <script>
     $("document").ready(function(){
+        var current_acc = "#account_payable";
+
         $("#exp1_button").click(function(){
             alert("insert complete");
         });
@@ -156,13 +158,9 @@
                 <div class="col-lg-8" style="padding: unset;">
                     <div class="form-group" style="text-align:center;">
                         <select class="form-control" id="chart_of_accounts">
-                            <option value="0">Account Receivable</option>
-                            <option value="1">Account Payable</option>
-                            <option value="2">Cash Advance</option>
-                            <opxtion value="0">Salaries and Wages</opxtion>
-                            <option value="0">Sales</option>
-                            <option value="0">Capital</option>
-                            <option value="3">TestFOrm</option>
+                            {% for acc_obj in accounts %}
+                            <option value="{{ acc_obj.id }}">{{ acc_obj.account_name }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                 </div>
@@ -185,7 +183,5 @@
       </div>
     </div>
   </div>
-
-
 
 {% endblock %}
