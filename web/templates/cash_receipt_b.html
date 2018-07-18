@@ -36,21 +36,17 @@
 <!--<script src="{{url_for('static', filename='scripts/load_account.js')}}"></script>-->
 <script>
     $("document").ready(function(){
-        var current_acc = "#account_payable";
+        var current_acc = "#account_receivable";
 
         $("#exp1_button").click(function(){
             alert("insert complete");
         });
 
         $("#chart_of_accounts").on('change',function(){
-            if(this.value == 1){
-                $("#account_payable").css("display","unset");
-                $("#account_payable2").css("display","none");
-            }
-            else if(this.value == 2){
-                $("#account_payable2").css("display","unset");
-                $("#account_payable").css("display","none");
-            }
+            //alert("old:"+current_acc+", new:"+this.value)
+            $(current_acc).css("display","none");
+            $("#"+this.value).css("display","unset");
+            current_acc = "#"+this.value
         });
 
     });
@@ -156,6 +152,14 @@
       <div class="modal-content">
 
         <div class="modal-header" style="padding-bottom:0px;">
+
+            {% for message in get_flashed_messages() %}
+                 <div class="alert alert-warning">
+                     <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ message }}
+                 </div>
+             {% endfor %}
+
             <div class="row">
                 <div class="col-lg-2" style="text-align:center;">
                     <h4 class="modal-title">Add Entry</h4>
@@ -163,8 +167,8 @@
                 <div class="col-lg-8" style="padding: unset;">
                     <div class="form-group" style="text-align:center;">
                         <select class="form-control" id="chart_of_accounts">
-                            {% for acc_obj in accounts %}
-                            <option value="{{ acc_obj.id }}">{{ acc_obj.account_name }}</option>
+                            {% for account in account_form %}
+                            <option value="{{ account.__repr__() }}">{{ account.__repr__().replace('_',' ').upper() }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -179,10 +183,9 @@
                 </div>
             </div>
         </div>
-
-        {% include 'acc_temps/account_payable.html' with context %}
-        {% include 'acc_temps/account_payable2.html' with context %}
-
+        {% for account in account_form %}
+            {% include "acc_temps/"+account.__repr__()+".html" with context %}
+        {% endfor %}
       </div>
 
       </div>

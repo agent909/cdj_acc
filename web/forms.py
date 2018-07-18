@@ -15,56 +15,338 @@ class AccountReceivableForm(FlaskForm):
     cash = DecimalField('cash', validators=[DataRequired()])
     submit = SubmitField('ADD')
 
-
-class AccountReceivableForm2(FlaskForm):
-    client_id = IntegerField(validators=[DataRequired()])
-    # account id is used to know what validator to be used
-    account_id = IntegerField(validators=[DataRequired()])
-    date = DateField('Date', format='%m-%d-%Y', validators=[DataRequired()])
-    schedule = DateField('Schedule', format='%m-%d-%Y', validators=[DataRequired()])
-    or_number = IntegerField('Document no', validators=[DataRequired()])
-    sold_to_someone = StringField(validators=[DataRequired()])
-    particulars = StringField(validators=[DataRequired()])
-    cash = DecimalField('cash', validators=[DataRequired()])
-    submit = SubmitField('ADD')
+    def __repr__(self):
+        return 'account_receivable'
 
 
-class TestForm(FlaskForm):
-    client_id = IntegerField(validators=[DataRequired()])
-    name = StringField(validators=[DataRequired()])
-    submit = SubmitField('ADD')
-
-
-class AccountPayableForm(FlaskForm):
+class LoansReceivableForm(FlaskForm):
     client_id = IntegerField(validators=[DataRequired()])
     account_id = IntegerField(validators=[DataRequired()])
-    date = DateField(format='%m/%d/%Y')
-    schedule = DateField(format='%m/%d/%Y')
-    or_number = IntegerField(validators=[DataRequired()])
-    sold_to = StringField(validators=[DataRequired()])
-    particulars = StringField(validators=[DataRequired()])
-    cash = DecimalField(validators=[DataRequired()])
-    submit = SubmitField('Add')
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'loans_receivable'
 
 
-class SalesForm(FlaskForm):
+class CashAdvanceForm(FlaskForm):
     client_id = IntegerField(validators=[DataRequired()])
-    date = DateField(format='%m/%d/%Y')
-    or_number = IntegerField(validators=[DataRequired()])
-    sold_to = StringField(validators=[DataRequired()])
-    particulars = StringField(validators=[DataRequired()])
-    cash = DecimalField(validators=[DataRequired()])
-    submit = SubmitField('Add')
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'cash_advance'
+
+
+class AccruedExpensesForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'accrued_expenses'
+
+
+class AccountsPayableForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'accounts_payable'
+
+
+class LoansPayableForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'loans_payable'
+
+
+class SssHdmfPhicPremiumPayableForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'sss_hdmf_phic_premium_payable'
 
 
 class CapitalForm(FlaskForm):
     client_id = IntegerField(validators=[DataRequired()])
-    investor = StringField(validators=[DataRequired()])
-    date = DateField(format='%m/%d/%Y')
-    cash = DecimalField(validators=[DataRequired()])
-    submit = SubmitField('Add')
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'capital'
 
 
-class SalaryWagesForm(FlaskForm):
+class NetIncomeForm(FlaskForm):
     client_id = IntegerField(validators=[DataRequired()])
-    cash = DecimalField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'net_income'
+
+
+class SalesForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'sales'
+
+
+class InterestEarnedForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'interest_earned'
+
+
+class ServiceForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'service_fee'
+
+
+class PenaltyForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'penalty'
+
+
+class OtherIncomeForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'other_income'
+
+
+class PurchasesForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'purchases'
+
+
+class SalariesAndWagesForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'salaries_and_wages'
+
+
+class LightAndPowerForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'light_and_power'
+
+
+class OfficeSuppliesForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'office_supplies'
+
+
+class StoreSuppliesForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'store_supplies'
+
+
+class RentalForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'rental'
+
+
+class CommunicationForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'communication'
+
+
+class SssContributionForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'sss_contribution'
+
+
+class HdmfContributionForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'hdmf_contribution'
+
+
+class PhicContributionForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'phic_contribution'
+
+
+class TransportationForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'transportation'
+
+
+class AllowancesForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'allowances'
+
+
+class RepairAndMaintenanceForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'repair_and_maintenance'
+
+
+class TaxesAndLicencesForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'taxes_and_licences'
+
+
+class SecurityServicesForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'security_services'
+
+
+class MiscellaneousForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'miscellaneous'
+
+
+class ProfessionalFeeForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'professional_fee'
+
+
+class DepreciationFeeForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'depreciation_fee'
+
+
+class AllowanceForDepreciationForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'allowance_for_depreciation'
+
+
+class BadDebtsForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'bad_debts'
+
+
+class AllowanceForBadDebtsForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'allowance_for_bad_debts'
+
+
+class AmortizationForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'amortization'
+
+
+class InsuranceForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'insurance'
+
+
+class FuelAndOilForm(FlaskForm):
+    client_id = IntegerField(validators=[DataRequired()])
+    account_id = IntegerField(validators=[DataRequired()])
+    submit = SubmitField('ADD')
+
+    def __repr__(self):
+        return 'fuel_and_oil'
