@@ -30,14 +30,15 @@ class Entry(db.Model):
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=False)
     cash = db.Column(db.Numeric, default=0)
-    date = db.Column(db.DateTime, nullable=False)
+    entry_date = db.Column(db.DateTime, nullable=False)
+    doc_date = db.Column(db.DateTime, nullable=False)
 
     def __repr__(self):
         return '<Entry %r>' % self.tranaction_id
 
     # def push_to_db(self, data):
 
-#insert into entry(client_id,account_id,cash,date) values(1,1,143,'2007-01-01');
+    #insert into entry(client_id,account_id,cash,entry_date,doc_date) values(1,1,143,'2007-01-01 10:00:00','2010-05-11 11:00:00');
 #date time format '2007-01-01 10:00:00' y-m-d t
 
 
@@ -52,32 +53,32 @@ class Account(db.Model):
 #insert into account(account_name) values('Account Payable');
 
 
-class CashAdvance(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    client_id = db.Column(db.Integer, nullable=False)
-    transaction_id = db.Column(db.Integer, nullable=False)
-    employee = db.Column(db.String(200), nullable=True)
-    debit = db.Column(db.Numeric, default=0)
-    credit = db.Column(db.Numeric, default=0)
+# class CashAdvance(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     client_id = db.Column(db.Integer, nullable=False)
+#     transaction_id = db.Column(db.Integer, nullable=False)
+#     employee = db.Column(db.String(200), nullable=True)
+#     debit = db.Column(db.Numeric, default=0)
+#     credit = db.Column(db.Numeric, default=0)
+#
+#     def __repr__(self):
+#         return '<cash>'
 
-    def __repr__(self):
-        return '<cash>'
 
-
-class AccountPayable(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    client_id = db.Column(db.Integer, nullable=False)
-    transaction_id = db.Column(db.Integer, nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
-    or_number = db.Column(db.Integer, nullable=True)
-    check_voucher_no = db.Column(db.Integer, nullable=True)
-    pay_to = db.Column(db.String(200), nullable=True)
-    particulars = db.Column(db.String(200), nullable=True)
-    debit = db.Column(db.Numeric, default=0)
-    credit = db.Column(db.Numeric, default=0)
-
-    def __repr__(self):
-        return '<payable>'
+# class AccountPayable(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     client_id = db.Column(db.Integer, nullable=False)
+#     transaction_id = db.Column(db.Integer, nullable=False)
+#     date = db.Column(db.DateTime, nullable=False)
+#     or_number = db.Column(db.Integer, nullable=True)
+#     check_voucher_no = db.Column(db.Integer, nullable=True)
+#     pay_to = db.Column(db.String(200), nullable=True)
+#     particulars = db.Column(db.String(200), nullable=True)
+#     debit = db.Column(db.Numeric, default=0)
+#     credit = db.Column(db.Numeric, default=0)
+#
+#     def __repr__(self):
+#         return '<payable>'
 
 
 class AccountReceivable(db.Model):
@@ -111,23 +112,23 @@ class Sales(db.Model):
         return '<sales>'
 
 
-class Capital(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    client_id = db.Column(db.Integer, nullable=False)
-    transaction_id = db.Column(db.Integer, nullable=False)
-    investor = db.Column(db.String(200), nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
-    debit = db.Column(db.Numeric, default=0)
-    credit = db.Column(db.Numeric, default=0)
+# class Capital(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     client_id = db.Column(db.Integer, nullable=False)
+#     transaction_id = db.Column(db.Integer, nullable=False)
+#     investor = db.Column(db.String(200), nullable=False)
+#     date = db.Column(db.DateTime, nullable=False)
+#     debit = db.Column(db.Numeric, default=0)
+#     credit = db.Column(db.Numeric, default=0)
 
 
-class SalariesAndWages(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    client_id = db.Column(db.Integer, nullable=False)
-    transaction_id = db.Column(db.Integer, nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
-    debit = db.Column(db.Numeric, default=0)
-    credit = db.Column(db.Numeric, default=0)
+# class SalariesAndWages(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     client_id = db.Column(db.Integer, nullable=False)
+#     transaction_id = db.Column(db.Integer, nullable=False)
+#     date = db.Column(db.DateTime, nullable=False)
+#     debit = db.Column(db.Numeric, default=0)
+#     credit = db.Column(db.Numeric, default=0)
 
 
 db.create_all()

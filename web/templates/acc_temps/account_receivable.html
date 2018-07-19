@@ -14,22 +14,23 @@
                 {{account_form[0].date(type="text", id="pickdate", class="form-control", placeholder="MM/DD/YYYY")}}
             </div>
             <div class="col-lg-2">
-                {{account_form[0].schedule.label(for="pickdate2")}}
-                {{account_form[0].schedule(type="text", id="pickdate2", class="form-control", placeholder="MM/DD/YYYY")}}
-            </div>
-            <div class="col-lg-2">
                 {{account_form[0].or_number.label(for="or")}}
-                {{account_form[0].or_number(type="number", id="or", class="form-control", placeholder="OR#")}}
+                {{account_form[0].or_number(type="number", id="or", class="form-control", placeholder="CI#")}}
             </div>
         </div>
 
         <div class="row">
             <div class="col-lg-8">
                 <div class="row">
-                    {{account_form[0].sold_to(type="text", class="form-control", placeholder="Sold to:", style="margin: 1% auto;width:95%;")}}
+                    {{account_form[0].debtor(type="text", class="form-control", placeholder="Debtor:", style="margin: 1% auto;width:95%;")}}
                 </div>
                 <div class="row">
-                    {{account_form[0].particulars(type="text", placeholder="Particulars", style="margin: 1% auto;width:95%;", class="form-control")}}
+                    <div class="col-lg-2">
+                        {{account_form[0].quantity(type="number", placeholder="Qty", class="form-control", style="margin: 1% auto")}}
+                    </div>
+                    <div class="col-lg-10" style="padding-left:0;">
+                        {{account_form[0].item(type="text", placeholder="Particulars", style="width:100%;", class="form-control")}}
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -48,7 +49,6 @@
     <script>
         $(document).ready(function() {
             $("#pickdate").datepicker({ dateFormat: 'mm-dd-yy' }).val();
-            $("#pickdate2").datepicker({ dateFormat: 'mm-dd-yy' }).val();
         });
     </script>
 </form>

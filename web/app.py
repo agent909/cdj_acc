@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from forms import *
 import os
-
+import sqlite3
 
 from models import *
 
@@ -13,6 +13,14 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+DB_directory.replace("\\", 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'julius'
 db = SQLAlchemy(app)
+
+conn = sqlite3.connect(DB_directory.replace("\\", "/")+'/sqlite/data.sqlite')
+c = conn.cursor()
+c.execute("PRAGMA foreign_keys=ON;")
+# c.execute("insert into entry(client_id,account_id,cash,entry_date,doc_date) values(1,1,143,'2007-01-01 10:00:00','2010-05-11 11:00:00')")
+conn.commit()
+c.close()
+conn.close()
 
 
 @app.route('/')
@@ -51,7 +59,7 @@ def cash_receipt_b():
         return redirect(url_for('cash_receipt_b'))
     elif form_id != (-1):
         flash('Invalid Input')
-
+        return
 
     return render_template('cash_receipt_b.html', account_form=account_form)
 
