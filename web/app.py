@@ -1,8 +1,13 @@
 from flask import Flask, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from forms import *
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.engine import Engine
+from sqlalchemy import event
+
 import os
 import sqlite3
+import datetime
 
 from models import *
 
@@ -14,13 +19,13 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'julius'
 db = SQLAlchemy(app)
 
-conn = sqlite3.connect(DB_directory.replace("\\", "/")+'/sqlite/data.sqlite')
-c = conn.cursor()
-c.execute("PRAGMA foreign_keys=ON;")
-# c.execute("insert into entry(client_id,account_id,cash,entry_date,doc_date) values(1,1,143,'2007-01-01 10:00:00','2010-05-11 11:00:00')")
-conn.commit()
-c.close()
-conn.close()
+
+@event.listens_for(Engine, "connect")
+def set_sqlite_pragma(dbapi_connection, connection_record):
+    if type(dbapi_connection) is sqlite3.Connection:  # play well with other DB backends
+        cursor = dbapi_connection.cursor()
+        cursor.execute("PRAGMA foreign_keys=ON")
+        cursor.close()
 
 
 @app.route('/')
@@ -43,9 +48,14 @@ def add_user():
     return render_template('register.html')
 
 
-@app.route('/cash.receipt.book', methods=['GET', 'POST'])
-def cash_receipt_b():
+@app.route('/cash.receipt.book/<client_id_>', methods=['GET', 'POST'])
+def cash_receipt_b(client_id_):
     # accounts = Account.query.order_by(Account.account_name).all()
+    # global conn
+    # c = conn.cursor()
+    # c.execute("PRAGMA foreign_keys=ON;")
+
+    client = Client.query.filter_by(id=client_id_).first()
     account_form = get_account_forms()
 
     try:
@@ -54,14 +64,36 @@ def cash_receipt_b():
         form_id = -1
 
     if account_form[form_id].validate_on_submit():
-        print('form validated JUL!!!!', form_id)
-        flash('Success: Valid Entry')
-        return redirect(url_for('cash_receipt_b'))
-    elif form_id != (-1):
-        flash('Invalid Input')
-        return
+        # print(account_form[form_id].date.data.timetuple())
+        entry = Entry(client_id=client_id_,
+                      account_id=account_form[form_id].account_id.data,
+                      cash=account_form[form_id].cash.data,
+                      entry_date=datetime.datetime.now(),
+                      doc_date=datetime.datetime.strptime(
+                          datetime.datetime.strftime(account_form[form_id].date.data, '%m-%d-%Y'), '%m-%d-%Y').date()
+                      )
+        try:
+            db.session.add(entry)
+            db.session.commit()
+        except IntegrityError:
+            print("ERROR! data not committed to database")
+            db.session.rollback()
 
-    return render_template('cash_receipt_b.html', account_form=account_form)
+        print('form validated JUL!!!! form_id: ', form_id)
+        flash('SUCCESS: Entry submitted')
+
+        return redirect(url_for('cash_receipt_b', client_id_=client_id_))
+    elif form_id != (-1):
+        print("invalid input")
+        flash('FAILED: Invalid input')
+        return redirect(url_for('cash_receipt_b', client_id_=client_id_))
+
+    return render_template('cash_receipt_b.html',
+                           account_form=account_form,
+                           client_name=[client.first_name,
+                                        client.middle_name,
+                                        client.last_name],
+                           client_id=client_id_)
 
 
 def get_account_forms():

@@ -2,7 +2,7 @@
     {{account_form[0].csrf_token}}
 
     <!--hidden values-->
-    {{account_form[0].client_id(value=1, style="display:none;")}}
+    {{account_form[0].client_id(value=client_id, style="display:none;")}}
 
     <!--THE VALUE FOR ACCOUNT ID MUST COME FROM THE ID'S OF ACCOUNT TABLE IN DATABASE-->
     {{account_form[0].account_id(value=1, style="display:none;")}}
@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-lg-2">
                 {{account_form[0].date.label(for="pickdate")}}
-                {{account_form[0].date(type="text", id="pickdate", class="form-control", placeholder="MM/DD/YYYY")}}
+                {{account_form[0].date(type="text", id="pickdate", class="form-control", placeholder="MM-DD-YYYY")}}
             </div>
             <div class="col-lg-2">
                 {{account_form[0].or_number.label(for="or")}}
@@ -29,7 +29,7 @@
                         {{account_form[0].quantity(type="number", placeholder="Qty", class="form-control", style="margin: 1% auto")}}
                     </div>
                     <div class="col-lg-10" style="padding-left:0;">
-                        {{account_form[0].item(type="text", placeholder="Particulars", style="width:100%;", class="form-control")}}
+                        {{account_form[0].item(type="text", placeholder="Item", style="width:100%;", class="form-control")}}
                     </div>
                 </div>
             </div>

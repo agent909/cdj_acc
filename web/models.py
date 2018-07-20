@@ -50,7 +50,7 @@ class Account(db.Model):
     def __repr__(self):
         return '<Account %r>' % self.account_name
 #insert into account(account_name) values('Cash');
-#insert into account(account_name) values('Account Payable');
+#insert into account(account_name) values('Account Receivable');
 
 
 # class CashAdvance(db.Model):
