@@ -50,11 +50,6 @@ def add_user():
 
 @app.route('/cash.receipt.book/<client_id_>', methods=['GET', 'POST'])
 def cash_receipt_b(client_id_):
-    # accounts = Account.query.order_by(Account.account_name).all()
-    # global conn
-    # c = conn.cursor()
-    # c.execute("PRAGMA foreign_keys=ON;")
-
     client = Client.query.filter_by(id=client_id_).first()
     account_form = get_account_forms()
 
@@ -64,7 +59,6 @@ def cash_receipt_b(client_id_):
         form_id = -1
 
     if account_form[form_id].validate_on_submit():
-        # print(account_form[form_id].date.data.timetuple())
         entry = Entry(client_id=client_id_,
                       account_id=account_form[form_id].account_id.data,
                       cash=account_form[form_id].cash.data,
@@ -76,8 +70,9 @@ def cash_receipt_b(client_id_):
             db.session.add(entry)
             db.session.commit()
         except IntegrityError:
-            print("ERROR! data not committed to database")
+            flash("ERROR! data not committed to database")
             db.session.rollback()
+            return redirect(url_for('cash_receipt_b', client_id_=client_id_))
 
         print('form validated JUL!!!! form_id: ', form_id)
         flash('SUCCESS: Entry submitted')
